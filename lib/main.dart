@@ -53,7 +53,6 @@ class _LocationWidget2State extends State<LocationWidget2> {
   void initState() {
     super.initState();
     _getCurrentLocation();
-
   }
 
   @override
