@@ -53,14 +53,7 @@ class _LocationWidget2State extends State<LocationWidget2> {
   void initState() {
     super.initState();
     _getCurrentLocation();
-    _positionStreamSubscription =
-        Geolocator.getPositionStream(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high))
-            .listen((Position position) {
-      setState(() {
-        _currentLocation = position;
-        _distanceText = _getDistanceText();
-      });
-    });
+
   }
 
   @override
@@ -88,6 +81,14 @@ class _LocationWidget2State extends State<LocationWidget2> {
     if (permission == LocationPermission.deniedForever) {
       return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
+    _positionStreamSubscription =
+        Geolocator.getPositionStream(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high))
+            .listen((Position position) {
+      setState(() {
+        _currentLocation = position;
+        _distanceText = _getDistanceText();
+      });
+    });
   }
 
   void _updateSelectedLocation() async {
